@@ -6,17 +6,17 @@
   <body>
     <div class="container">
       <h2>Admin Sign in</h2>
-      <form>
+      <form action="/adminSignIn" method="post">
         <!-- First field -->
         <div class="form-group">
-          <label for="inputName">Name:</label>
-          <input type="text" class="form-control" id="inputName" placeholder="Enter your name">
+          <label for="inputEmail">Email address:</label>
+          <input type="email" class="form-control" name="adEmail" placeholder="Enter your email">
         </div>
 
         <!-- Second field -->
         <div class="form-group">
-          <label for="inputEmail">Email address:</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Enter your email">
+          <label for="inputPassword">Password</label>
+          <input type="password" class="form-control" name="adPassword" placeholder="Enter your password">
         </div>
 
         <!-- Submit button -->

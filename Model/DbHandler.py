@@ -1,18 +1,18 @@
 import pymysql
 
-class DatabaseHandler:
-    def _init_(self, host, username, password, db):
+class DbHandler:
+    def __init__(self, host, username, password, db):
         self.host = host
         self.username = username
         self.password = password
         self.db = db
         self.connection = pymysql.Connect(host=self.host, user=self.username, password=self.password, database=self.db)
-        self.cursor = self.conn.cursor()
+        self.cursor = self.connection.cursor()
 
     def execute(self, query, args=None):
         try:
             self.cursor.execute(query, args)
-            self.conn.commit()
+            self.connection.commit()
         except Exception as e:
             print(f"Error executing query: {e}")
 
@@ -21,7 +21,7 @@ class DatabaseHandler:
         return self.cursor.fetchall()
 
     def close(self):
-        self.conn.close()
+        self.connection.close()
 
     def checkUserExist(self, email, password, acctype):
         try:
