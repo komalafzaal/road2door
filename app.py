@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
 
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+@app.route('/adminSignIn')
+def adminSignIn():  # put application's code here
+    return render_template("adminSignIn.html")
 
 
 if __name__ == '__main__':

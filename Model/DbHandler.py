@@ -7,6 +7,7 @@ class DatabaseHandler:
         self.password = password
         self.db = db
         self.connection = pymysql.Connect(host=self.host, user=self.username, password=self.password, database=self.db)
+        self.cursor = self.conn.cursor()
 
     def execute(self, query, args=None):
         try:
@@ -21,3 +22,31 @@ class DatabaseHandler:
 
     def close(self):
         self.conn.close()
+
+    def checkUserExist(self, email, password, acctype):
+        try:
+            if acctype == "admin":
+                query = "select * from admin where ad_email = %s and ad_password = %s";
+                args = (email, password)
+                rows = self.select(query, args)
+                if rows:
+                    return True
+                return False
+            elif acctype == "rider":
+                query = "select * from rider where rider_email = %s and rider_password = %s";
+                args = (email, password)
+                rows = self.select(query, args)
+                if rows:
+                    return True
+                return False
+            elif acctype == "consumer":
+                query = "select * from consumer where con_email = %s and con_password = %s";
+                args = (email, password)
+                rows = self.select(query, args)
+                if rows:
+                    return True
+                return False
+        except Exception as e:
+            print(e)
+        finally:
+            self.close()
