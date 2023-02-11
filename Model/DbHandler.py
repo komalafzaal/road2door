@@ -50,3 +50,15 @@ class DbHandler:
             print(e)
         finally:
             self.close()
+
+    def riderSignup(self, username, email, password, cnic, phoneNo, license, criminalRec ):
+        try:
+            query = "INSERT INTO rider (rider_name, rider_email, rider_password, rider_cnic, rider_phone, " \
+                    "rider_license,rider_criminalRec) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            args = (username, email, password, cnic, phoneNo, license, criminalRec)
+            self.execute(query, args)
+            print ("ïnsert")
+        except Exception as e:
+            print("Error: ", e)
+        finally:
+            self.close()
