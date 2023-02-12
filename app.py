@@ -57,6 +57,17 @@ def riderSignUp():
     except Exception as e:
         print("Error: ", e)
         return "error"
+@app.route('/riderSignIn', methods=["GET", "POST"])
+def adminSignIn():  # put application's code here
+    if request.method == "POST":
+        username = request.form["riderEmail"]
+        password = request.form["riderPassword"]
 
+        handler = makeHandler()
+
+        if handler.checkUserExist(username, password, "rider"):   # hardcode value (option)
+            return "Login Successful"
+        else:
+            return render_template("riderSignIn.html", error="Invalid username or password.")
 if __name__ == '__main__':
     app.run(debug=True)
