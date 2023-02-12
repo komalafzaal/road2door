@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 
 def makeHandler():
-    return DbHandler(host="localhost", username="root", password="", db="road2door")
+    return DbHandler(host="localhost", username="root", password="syedaLaiba22", db="road2door")
 
 @app.route('/adminSignIn', methods=["GET", "POST"])
 def adminSignIn():  # put application's code here
@@ -58,7 +58,7 @@ def riderSignUp():
         print("Error: ", e)
         return "error"
 @app.route('/riderSignIn', methods=["GET", "POST"])
-def adminSignIn():  # put application's code here
+def riderSignIn():  # put application's code here
     if request.method == "POST":
         username = request.form["riderEmail"]
         password = request.form["riderPassword"]
@@ -69,5 +69,9 @@ def adminSignIn():  # put application's code here
             return "Login Successful"
         else:
             return render_template("riderSignIn.html", error="Invalid username or password.")
+
+    return render_template("riderSignIn.html", error="Invalid username or password.")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
